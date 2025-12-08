@@ -1,0 +1,41 @@
+Problem:
+Given an array of positive integers nums and a positive integer target, return the minimal length of a subarray whose sum is greater than or equal to target. If there is no such subarray, return 0 instead.
+
+Code:
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int left=0;
+        int min=Integer.MAX_VALUE;
+        int sum=0;
+        for(int right=0;right<nums.length;right++)
+        {
+            sum=sum+nums[right];
+            while(sum>=target)
+            {
+                min=Math.min(min,right-left+1);
+                System.out.println(sum+" "+min);
+                sum=sum-nums[left];
+                left++;
+            }
+        }
+        return min == Integer.MAX_VALUE ? 0 : min;
+    }
+}
+
+Dry run:
+Input: nums = [2,3,1,2,4,3], target = 7
+Initial:left = 0, sum = 0, min = infinity
+Steps:
+right = 0 -> sum = 2
+right = 1 -> sum = 5
+right = 2 -> sum = 6
+right = 3 -> sum = 8 >= 7 -> window length = 4 -> min = 4
+Shrink -> sum = 6, left = 1
+right = 4 -> sum = 10 >= 7 -> window length = 4 -> min = 4
+Shrink -> sum = 7 >= 7 -> window length = 3 -> min = 3
+Shrink -> sum = 6
+right = 5 -> sum = 9 >= 7 -> window length = 3 -> min = 3
+Shrink -> sum = 7 -> window length = 2 -> min = 2
+Shrink -> sum = 3
+Final Answer:
+Minimal subarray length = 2
