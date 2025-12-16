@@ -1,0 +1,198 @@
+# 📌 DSA PATTERNS — HOW & WHEN TO USE
+
+---
+
+## 1️⃣ Sliding Window 🪟
+
+### **When to use**
+
+* Problems with **subarrays / substrings**
+* “Maximum / Minimum / Longest / Shortest”
+* **Continuous** elements
+* Keywords: *subarray, substring, consecutive*
+
+### **How it works**
+
+* Use two pointers: `left` and `right`
+* Expand window by moving `right`
+* Shrink window by moving `left` when condition breaks
+
+### **Common problems**
+
+* Maximum sum subarray of size K
+* Longest substring without repeating characters
+* Minimum window substring
+* Maximum consecutive ones
+
+---
+
+## 2️⃣ Two Pointers 👉👈
+
+### **When to use**
+
+* Sorted arrays / strings
+* Pair problems
+* Reverse / Palindrome checks
+* Comparing from both ends
+
+### **How it works**
+
+* Start with two pointers (`left`, `right`)
+* Move based on condition (sum too big → move right, etc.)
+
+### **Common problems**
+
+* Two Sum (sorted array)
+* Palindrome check
+* Container with most water
+
+---
+
+## 3️⃣ Prefix Sum ➕
+
+### **When to use**
+
+* Multiple **range sum queries**
+* Subarray sum problems
+* Need fast sum calculation
+
+### **How it works**
+
+* Precompute cumulative sum array
+* Subarray sum = `prefix[r] - prefix[l-1]`
+
+### **Common problems**
+
+* Subarray sum equals K
+* Range sum queries
+* Equilibrium index
+
+---
+
+## 4️⃣ Binary Search 🔍
+
+### **When to use**
+
+* Sorted data
+* “Find minimum / maximum possible value”
+* Problems where answer space is sorted
+
+### **How it works**
+
+* Divide search space into half
+* Check mid → move left or right
+
+### **Common problems**
+
+* Search in sorted array
+* Minimum capacity / speed problems
+* First & last occurrence
+
+---
+
+## 5️⃣ Hashing / HashMap #️⃣
+
+### **When to use**
+
+* Frequency counting
+* Fast lookup
+* Remove nested loops
+
+### **How it works**
+
+* Store counts / indices in HashMap or array
+* Lookup in O(1)
+
+### **Common problems**
+
+* Two Sum
+* Anagrams
+* Longest consecutive sequence
+
+---
+
+## 6️⃣ Backtracking 🔄
+
+### **When to use**
+
+* All possible combinations / permutations
+* Decision tree problems
+* “Try all paths” with constraints
+
+### **How it works**
+
+* Choose → Explore → Unchoose
+* Recursion with undoing step
+
+### **Common problems**
+
+* Subsets
+* Permutations
+* N-Queens
+
+---
+
+## 7️⃣ Dynamic Programming (DP) 🧠
+
+### **When to use**
+
+* Overlapping subproblems
+* Optimal / maximum / minimum answers
+* Recursion + memoization pattern
+
+### **How it works**
+
+* Break problem into smaller subproblems
+* Store results to avoid recomputation
+
+### **Common problems**
+
+* Fibonacci
+* Coin change
+* Longest common subsequence
+
+---
+
+## 8️⃣ Greedy 💰
+
+### **When to use**
+
+* Locally optimal choice leads to global optimal
+* Scheduling, intervals, selection problems
+
+### **How it works**
+
+* Make the best choice at each step
+* No backtracking
+
+### **Common problems**
+
+* Activity selection
+* Minimum coins
+* Jump game
+
+---
+
+## 9️⃣ Graph Algorithms 🌐
+
+### **When to use**
+
+* Nodes & edges
+* Relationships / connections
+* Paths, cycles, connectivity
+
+### **How it works**
+
+* Use BFS / DFS / Dijkstra
+* Traverse graph efficiently
+
+### **Common problems**
+
+* Number of islands
+* Shortest path
+* Cycle detection
+
+---
+DSA problems are not random.
+Every problem belongs to a PATTERN.
+Identify the pattern → solution becomes obvious
