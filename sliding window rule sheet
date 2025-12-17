@@ -1,0 +1,39 @@
+SLIDING WINDOW RULE SHEET
+
+Golden Rule:
+Condition NOT satisfied ® EXPAND window
+Condition satisfied ® SHRINK window to OPTIMIZE
+
+When to Use Sliding Window:
+• Subarray / Substring problems
+• Continuous elements
+• Max / Min / Longest / Shortest keywords
+
+Types of Sliding Window:
+Fixed Window: Size K is constant (Ex: Max sum subarray of size K)
+Variable Window: Size changes (Ex: Longest substring, Min window substring)
+
+Expand Logic:
+• Move right pointer
+• Add element to window
+• Use when condition is NOT satisfied
+
+Shrink Logic:
+• Move left pointer
+• Remove element from window
+• Use when condition IS satisfied
+
+Common Mistake:
+• Expanding even after condition is satisfied
+
+Key Reminder:
+Right pointer builds the window
+Left pointer optimizes the window
+
+Examples:
+• Min Window Substring ® Expand to match, shrink to minimize
+• Max Consecutive Ones ® Expand, shrink when zeros > K
+• Longest Substring ® Expand, shrink on duplicate
+
+One Line Summary:
+Sliding Window is about knowing WHEN to expand and WHEN to shrink.
