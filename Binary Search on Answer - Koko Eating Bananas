@@ -1,0 +1,208 @@
+# 🍌 Problem statement
+
+**Input**
+
+```
+piles = [3, 6, 7, 11]
+H = 8 hours
+```
+
+**Goal**
+👉 Find the **minimum eating speed (bananas/hour)** such that Koko can finish all bananas within **8 hours**.
+
+---
+
+# 🧠 Key Idea (Very Important)
+
+* We are **NOT searching the array**
+* We are searching the **ANSWER (speed)**
+
+Possible speed range:
+
+```
+Minimum speed = 1
+Maximum speed = max(piles) = 11
+```
+
+This range is **sorted** → Binary Search applicable ✅
+
+---
+
+# ✅ Java Code (Clean & Interview-Ready)
+
+```java
+public class KokoEatingBananas {
+
+    public static int minEatingSpeed(int[] piles, int h) {
+        int left = 1;
+        int right = 0;
+
+        // Find maximum pile (right boundary)
+        for (int pile : piles) {
+            right = Math.max(right, pile);
+        }
+
+        int answer = right;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (canEatAll(piles, mid, h)) {
+                // mid is valid, try smaller speed
+                answer = mid;
+                right = mid - 1;
+            } else {
+                // mid is invalid, need bigger speed
+                left = mid + 1;
+            }
+        }
+
+        return answer;
+    }
+
+    private static boolean canEatAll(int[] piles, int speed, int h) {
+        int hoursNeeded = 0;
+
+        for (int pile : piles) {
+            // ceil(pile / speed)
+            hoursNeeded += (pile + speed - 1) / speed;
+        }
+
+        return hoursNeeded <= h;
+    }
+
+    public static void main(String[] args) {
+        int[] piles = {3, 6, 7, 11};
+        int h = 8;
+
+        System.out.println(minEatingSpeed(piles, h)); // Output: 4
+    }
+}
+```
+
+---
+
+# 🔍 Dry Run (STEP-BY-STEP, VERY CLEAR)
+
+### Initial Setup
+
+```
+piles = [3, 6, 7, 11]
+H = 8
+
+left = 1
+right = 11
+answer = 11
+```
+
+---
+
+## 🔹 Iteration 1
+
+```
+mid = (1 + 11) / 2 = 6
+```
+
+Check if speed = **6** is valid:
+
+| Pile      | Hours needed |
+| --------- | ------------ |
+| 3         | 1            |
+| 6         | 1            |
+| 7         | 2            |
+| 11        | 2            |
+| **Total** | **6 hours**  |
+
+```
+6 ≤ 8 → VALID ✅
+```
+
+👉 Since valid, try **smaller speed**
+
+```
+answer = 6
+right = 5
+```
+
+---
+
+## 🔹 Iteration 2
+
+```
+left = 1, right = 5
+mid = (1 + 5) / 2 = 3
+```
+
+Check speed = **3**:
+
+| Pile      | Hours needed |
+| --------- | ------------ |
+| 3         | 1            |
+| 6         | 2            |
+| 7         | 3            |
+| 11        | 4            |
+| **Total** | **10 hours** |
+
+```
+10 > 8 → INVALID ❌
+```
+
+👉 Speed too slow → increase speed
+
+```
+left = 4
+```
+
+---
+
+## 🔹 Iteration 3
+
+```
+left = 4, right = 5
+mid = (4 + 5) / 2 = 4
+```
+
+Check speed = **4**:
+
+| Pile      | Hours needed |
+| --------- | ------------ |
+| 3         | 1            |
+| 6         | 2            |
+| 7         | 2            |
+| 11        | 3            |
+| **Total** | **8 hours**  |
+
+```
+8 ≤ 8 → VALID ✅
+```
+
+👉 Try smaller speed again
+
+```
+answer = 4
+right = 3
+```
+
+---
+
+## 🔚 Loop Ends
+
+```
+left = 4, right = 3 → stop
+```
+
+---
+
+# 🎯 Final Answer
+
+```
+Minimum eating speed = 4 bananas/hour
+```
+
+---
+
+# 🧠 ONE-LINE INTERVIEW SUMMARY (VERY IMPORTANT)
+
+> **Binary Search on Answers works because once a speed is valid, all higher speeds are also valid (monotonic).**
+
+---
