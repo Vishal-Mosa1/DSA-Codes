@@ -1,0 +1,41 @@
+class Solution {
+    public int aggressiveCows(int[] stalls, int k) {
+        // code here
+        Arrays.sort(stalls);
+        int max=Integer.MIN_VALUE;
+        int left=1;
+        int right=stalls[stalls.length-1]-stalls[0];
+        int mid=0;
+        
+        while(left<=right)
+        {
+            mid=(left+right)/2;
+            int c=helper(stalls,mid);
+            if(c>=k)
+            {
+                left=mid+1;
+                max=Math.max(max,mid);
+            }
+            else
+            {
+                right=mid-1;
+            }
+        }
+        return max;
+    }
+    
+    private int helper(int[] stalls,int mid)
+    {
+        int t=stalls[0];
+        int c=1;
+        for(int i=1;i<stalls.length;i++)
+        {
+            if(stalls[i]-t>=mid)
+            {
+                c++;
+                t=stalls[i];
+            }
+        }
+        return c;
+    }
+}
