@@ -1,0 +1,140 @@
+PROBLEM STATEMENT:
+
+Given an array arr[] where each element denotes the length of a board, and an integer k representing the number of painters available. Each painter takes 1 unit of time to paint 1 unit length of a board.
+Determine the minimum amount of time required to paint all the boards, under the constraint that each painter can paint only a contiguous sequence of boards (no skipping or splitting allowed).
+
+CODE:
+
+public class PaintersPartition {
+
+    public static int minTime(int[] boards, int painters) {
+        int left = 0, right = 0;
+
+        for (int b : boards) {
+            left = Math.max(left, b); 
+            right += b;             
+        }
+
+        int answer = right;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (canPaint(boards, painters, mid)) {
+                answer = mid;        // valid
+                right = mid - 1;     // try smaller time
+            } else {
+                left = mid + 1;      // need more time
+            }
+        }
+
+        return answer;
+    }
+
+    private static boolean canPaint(int[] boards, int painters, int maxTime) {
+        int paintersUsed = 1;
+        int time = 0;
+
+        for (int b : boards) {
+            if (time + b <= maxTime) {
+                time += b;
+            } else {
+                paintersUsed++;
+                time = b;
+
+                if (paintersUsed > painters) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        int[] boards = {10, 20, 30, 40};
+        int painters = 2;
+
+        System.out.println(minTime(boards, painters));
+    }
+}
+
+
+DRY RUN:
+
+Input
+Boards = [10, 20, 30, 40]
+Painters = 2
+
+Step 1: Answer Range
+left  = max board = 40
+right = sum = 100
+
+🔹 Iteration 1
+mid = (40 + 100) / 2 = 70
+
+
+Check if painters can paint within 70:
+
+Painter 1 → 10 + 20 + 30 = 60
+
+Painter 2 → 40
+
+Painters used = 2 ✅
+👉 VALID
+
+answer = 70
+right = 69
+
+🔹 Iteration 2
+mid = (40 + 69) / 2 = 54
+
+
+Painter 1 → 10 + 20 = 30
+
+Painter 2 → 30
+
+Painter 3 → 40 ❌
+
+Painters used = 3 > 2
+👉 INVALID
+
+left = 55
+
+🔹 Iteration 3
+mid = (55 + 69) / 2 = 62
+
+
+Painter 1 → 10 + 20 + 30 = 60
+
+Painter 2 → 40
+
+✅ VALID
+
+answer = 62
+right = 61
+
+🔹 Iteration 4
+mid = (55 + 61) / 2 = 58
+
+
+Painters exceed ❌ → INVALID
+
+left = 59
+
+🔹 Iteration 5
+mid = (59 + 61) / 2 = 60
+
+
+Painter 1 → 10 + 20 + 30 = 60
+
+Painter 2 → 40
+
+✅ VALID
+
+answer = 60
+
+
+Loop ends.
+
+✅ FINAL ANSWER
+Minimum time = 60
