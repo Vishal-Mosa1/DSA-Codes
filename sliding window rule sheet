@@ -37,3 +37,100 @@ Examples:
 
 One Line Summary:
 Sliding Window is about knowing WHEN to expand and WHEN to shrink.
+
+Problems:
+
+Fixed Size Window Problem:
+
+Given an array of integers arr[]  and a number k. Return the maximum sum of a subarray of size k.
+Note: A subarray is a contiguous part of any given array.
+
+Code:
+
+class Solution {
+    public int maxSubarraySum(int[] arr, int k) {
+        // bruteforce
+        int max=Integer.MIN_VALUE;
+        // for(int i=0;i<=arr.length-k;i++)
+        // {
+        //     int sum=0;
+        //     for(int j=i;j<i+k;j++)
+        //     {
+        //         sum=sum+arr[j];
+        //     }
+        //     max=Math.max(max,sum);
+        // }
+        // return max;
+        
+        int sum=0;
+        for(int i=0;i<k;i++)
+        {
+            sum=sum+arr[i];
+        }
+        max=Math.max(max,sum);
+        for(int i=k;i<arr.length;i++)
+        {
+            int left=arr[i-k];
+            int right=arr[i];
+            sum=sum+right-left;
+            max=Math.max(max,sum);
+        }
+        return max;
+    }
+}
+
+Dry Run:
+
+Input : nums=[100, 200, 300, 400], k = 2
+
+step 1: arr[0]+arr[1] => sum = 100+200 = 300 max=Max(Integer.MIN_VALUE, 300)=> max=300
+step 2: sum-arr[0]+arr[2] => sum = 300-100+300 = 500 max = Max(300,500) => max = 500
+step 3: sum-arr[1]+arr[3] => sum = 500-200+400 = 700 max = Max(500,700) => max = 700
+
+
+Variable Size Window Problem:
+
+Given an array of positive integers nums and a positive integer target, return the minimal length of a subarray whose sum is greater than or equal to target. 
+If there is no such subarray, return 0 instead.
+
+Code:
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int left=0;
+        int min=Integer.MAX_VALUE;
+        int sum=0;
+        for(int right=0;right<nums.length;right++)
+        {
+            sum=sum+nums[right];
+            while(sum>=target)
+            {
+                min=Math.min(min,right-left+1);
+                System.out.println(sum+" "+min);
+                sum=sum-nums[left];
+                left++;
+            }
+        }
+        return min == Integer.MAX_VALUE ? 0 : min;
+    }
+}
+
+Dry run:
+Input: nums = [2,3,1,2,4,3], target = 7
+Initial:left = 0, sum = 0, min = infinity
+Steps:
+right = 0 -> sum = 2
+right = 1 -> sum = 5
+right = 2 -> sum = 6
+right = 3 -> sum = 8 >= 7 -> window length = 4 -> min = 4
+Shrink -> sum = 6, left = 1
+right = 4 -> sum = 10 >= 7 -> window length = 4 -> min = 4
+Shrink -> sum = 7 >= 7 -> window length = 3 -> min = 3
+Shrink -> sum = 6
+right = 5 -> sum = 9 >= 7 -> window length = 3 -> min = 3
+Shrink -> sum = 7 -> window length = 2 -> min = 2
+Shrink -> sum = 3
+Final Answer:
+Minimal subarray length = 2
+
+
+
