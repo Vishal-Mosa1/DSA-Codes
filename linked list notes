@@ -1,0 +1,104 @@
+Linked List – Complete Notes
+
+What is a Linked List?
+A Linked List is a linear data structure where elements are stored in nodes.
+Each node contains:
+	•	Data → actual value
+	•	Next → reference (pointer) to the next node
+
+Unlike arrays, linked lists do not store elements in contiguous memory.
+
+Structure of a Node
+| Data | Next |
+
+Example:
+10 → 20 → 30 → NULL
+
+->Types of Linked List
+
+1. Singly Linked List
+	•	Each node points to the next node
+	•	Traversal is one-directional
+
+10 → 20 → 30 → NULL
+
+2. Doubly Linked List
+	•	Each node has prev and next
+	•	Traversal is two-directional
+
+NULL ← 10 ⇄ 20 ⇄ 30 → NULL
+
+3. Circular Linked List
+	•	Last node points back to the first node
+	•	No NULL at the end
+
+10 → 20 → 30
+↑           ↓
+└───────────┘
+
+
+Why Linked List?
+
+✅ Dynamic size
+✅ Easy insertion & deletion
+❌ No direct indexing
+❌ Extra memory for pointers
+
+Basic Operations
+
+-> Traversal
+
+Visit each node from head to tail.
+
+Head → 10 → 20 → 30 → NULL
+
+-> Insertion
+
+1. Insert at Beginning
+
+Before: 10 → 20 → NULL
+After : 5 → 10 → 20 → NULL
+
+2. Insert at End
+
+Before: 10 → 20 → NULL
+After : 10 → 20 → 30 → NULL
+
+3. Insert at Position
+
+Insert 15 at position 2
+10 → 15 → 20 → NULL
+
+-> Deletion
+
+1. Delete from Beginning
+
+10 → 20 → 30 → NULL
+→ 20 → 30 → NULL
+
+2. Delete from End
+
+10 → 20 → 30 → NULL
+→ 10 → 20 → NULL
+
+-> Time Complexity
+
+Operation	Time
+Access	O(n)
+Insert at Head	O(1)
+Insert at Tail	O(n)
+Delete	O(n)
+Search	O(n)
+
+
+Real-Life Examples
+
+📌 Music playlist (next song)
+📌 Browser history
+📌 Undo / Redo operations
+📌 Image viewer (next / previous image)
+
+-> Interview Tip ⭐
+
+Use Linked List when frequent insertions/deletions are needed and Array when fast access is required.
+
