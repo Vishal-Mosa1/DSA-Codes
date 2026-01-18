@@ -1,0 +1,150 @@
+Singly Linked List vs Doubly Linked List
+
+## What is a Linked List?
+
+A **Linked List** is a **linear data structure** where elements (called **nodes**) are stored in **non-contiguous memory locations**.
+Each node contains:
+
+* **Data**
+* **Reference (pointer)** to another node
+
+## Singly Linked List (SLL)
+
+### Definition
+
+A **Singly Linked List** is a linked list in which **each node points only to the next node** in the sequence.
+
+### Structure
+
+[ Data | Next ] → [ Data | Next ] → [ Data | Next ] → NULL
+
+### Node Representation
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+### Characteristics
+
+* Each node has **one pointer (next)**
+* Traversal is **one-directional (forward only)**
+* Last node points to **NULL**
+
+### Advantages
+
+* Uses **less memory** (only one pointer)
+* Simple to implement
+* Faster insertion/deletion compared to arrays
+
+### Disadvantages
+
+* Cannot traverse backward
+* Deleting a node requires access to the **previous node**
+* Reverse traversal is not possible directly
+
+### Example
+
+Linked list values: `10 → 20 → 30`
+
+Head → [10|•] → [20|•] → [30|NULL]
+
+## Doubly Linked List (DLL)
+
+### Definition
+
+A **Doubly Linked List** is a linked list in which **each node contains two pointers**:
+
+* One to the **previous node**
+* One to the **next node**
+
+### Structure
+
+
+NULL ← [ Prev | Data | Next ] ⇄ [ Prev | Data | Next ] ⇄ [ Prev | Data | Next ] → NULL
+
+
+### Node Representation
+
+struct Node {
+    int data;
+    struct Node* prev;
+    struct Node* next;
+};
+
+
+### Characteristics
+
+* Each node has **two pointers**
+* Traversal is **bi-directional**
+* First node’s `prev` is **NULL**
+* Last node’s `next` is **NULL**
+
+### Advantages
+
+* Traversal in **both directions**
+* Easy deletion (no need to track previous node)
+* Useful for complex navigation
+
+### Disadvantages
+
+* Uses **extra memory**
+* Slightly complex implementation
+* Insertion/deletion takes more pointer updates
+
+### Example
+
+Linked list values: `10 ⇄ 20 ⇄ 30`
+
+NULL ← [•|10|•] ⇄ [•|20|•] ⇄ [•|30|NULL]
+
+->Singly vs Doubly Linked List – Comparison Table
+
+| Feature            | Singly Linked List | Doubly Linked List |
+| ------------------ | ------------------ | ------------------ |
+| Pointers per node  | 1 (next)           | 2 (prev + next)    |
+| Traversal          | One direction      | Both directions    |
+| Memory usage       | Less               | More               |
+| Backward traversal | ❌ Not possible     | ✅ Possible         |
+| Deletion operation | Harder             | Easier             |
+| Implementation     | Simple             | Complex            |
+| Performance        | Slightly faster    | Slightly slower    |
+
+
+## Real-World Use Cases
+
+### Singly Linked List
+
+* Stack implementation
+* Queue implementation
+* Simple memory-efficient lists
+* Adjacency list in graphs
+
+### Doubly Linked List
+
+* Browser **back & forward navigation**
+* Music player **previous/next song**
+* Undo/Redo operations
+* LRU Cache implementation
+
+## Interview Tip
+
+📌 **If memory is a concern → use Singly Linked List**
+📌 **If backward traversal or frequent deletion is needed → use Doubly Linked List**
+
+## Simple Example (Insertion at Beginning)
+
+### Singly Linked List
+
+newNode->next = head;
+head = newNode;
+
+### Doubly Linked List
+
+newNode->next = head;
+newNode->prev = NULL;
+head->prev = newNode;
+head = newNode;
+
+##Summary (One-Line) : 
+**Singly Linked List** is memory-efficient but one-directional, while **Doubly Linked List** allows two-way traversal at the cost of extra memory.
