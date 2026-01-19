@@ -1,0 +1,186 @@
+# 📚 STACK – Complete Notes with Examples
+
+## 🔹 What is a Stack?
+
+A **Stack** is a **linear data structure** that follows the principle:
+
+### 👉 **LIFO – Last In, First Out**
+
+This means:
+* The **last element added** to the stack is the **first one removed**
+* Operations happen from **one end only**, called the **TOP**
+
+💡 **Real-life example**:
+* Stack of plates
+* Undo/Redo in editors
+* Browser back button
+
+
+## 🔹 Stack Terminology
+| Term           | Meaning                                  |
+| ---------------| ---------------------------------------- |
+| **Top**        | Points to the last inserted element      |
+| **Push**       | Insert an element into the stack         |
+| **Pop**        | Remove the top element                   |
+| **Peek / Top** | View the top element without removing it |
+| **Overflow**   | Trying to push when stack is full        |
+| **Underflow**  | Trying to pop when stack is empty        |
+
+
+
+## 🔹 Stack Operations
+
+### 1️⃣ Push Operation
+
+Adds an element **at the top** of the stack.
+
+**Steps**:
+1. Check if stack is full
+2. Increase top
+3. Insert element at top
+
+**Example**:
+Push 10
+Push 20
+Push 30
+
+
+Stack:
+| 30 |  ← Top
+| 20 |
+| 10 |
+
+
+### 2️⃣ Pop Operation
+Removes the **top element** from the stack.
+
+**Steps**:
+1. Check if stack is empty
+2. Remove element at top
+3. Decrease top
+
+**Example**:
+Pop → removes 30
+
+Stack becomes:
+| 20 | ← Top
+| 10 |
+
+### 3️⃣ Peek (Top) Operation
+Returns the **top element** without removing it.
+
+**Example**:
+Peek → 20
+
+## 🔹 Stack Implementation
+
+### 📌 1. Stack Using Array
+
+* Fixed size
+* Fast access
+* May cause **overflow**
+
+**Example (Array size = 5)**:
+Stack = [10, 20, 30]
+Top = 2
+
+**Pros**:
+* Easy to implement
+* Cache friendly
+
+**Cons**:
+* Fixed size
+* Wastage of memory
+
+### 📌 2. Stack Using Linked List
+* Dynamic size
+* No overflow until memory is full
+* Slightly slower than array
+
+
+**Example**:
+Top → 30 → 20 → 10 → NULL
+
+
+**Pros**:
+* Dynamic size
+* No memory wastage
+
+**Cons**:
+* Extra memory for pointers
+
+## 🔹 Stack Example (Step-by-Step)
+
+### Push Elements
+Push 5
+Push 10
+Push 15
+
+
+Stack:
+| 15 | ← Top
+| 10 |
+|  5 |
+
+
+### Pop One Element
+Pop → 15
+
+Stack:
+| 10 | ← Top
+|  5 |
+
+
+## 🔹 Applications of Stack
+✔ Function calls (Call Stack)
+✔ Undo / Redo operations
+✔ Expression evaluation
+✔ Parenthesis checking
+✔ Reversing a string
+✔ Backtracking (DFS, maze solving)
+
+## 🔹 Expression Evaluation Using Stack
+
+### Infix → Postfix Conversion
+
+Infix:   A + B
+Postfix: AB+
+
+### Parenthesis Checking
+
+Input:  (A+B)
+Valid ✅
+
+Input:  (A+B]
+Invalid ❌
+
+## 🔹 Time & Space Complexity
+| Operation | Time |
+|  | - |
+| Push      | O(1) |
+| Pop       | O(1) |
+| Peek      | O(1) |
+
+
+Space Complexity:
+* **Array Stack** → O(n)
+* **Linked List Stack** → O(n)
+
+
+## 🔹 Advantages of Stack
+✔ Simple and easy
+✔ Fast operations
+✔ Useful for recursion and backtracking
+
+## 🔹 Disadvantages of Stack
+❌ Limited access (only top)
+❌ No random access
+❌ Overflow (array stack)
+
+
+## 🔹 Key Points to Remember
+* Stack follows **LIFO**
+* All operations happen from **TOP**
+* Push → Insert
+* Pop → Remove
+* Peek → View top
