@@ -1,0 +1,165 @@
+# 📌 QUEUE – COMPLETE NOTES (WITH EXAMPLES)
+
+---> What is a Queue?
+A **Queue** is a **linear data structure** that follows the rule:
+### 👉 **FIFO – First In, First Out**
+➡️ The element that enters **first** will leave **first**.
+
+---> Real-Life Examples
+* 🎬 Movie theater line
+* 🖨️ Printer jobs
+* 🌐 Web server requests
+* 🚦 Traffic signal waiting line
+* 📞 Call center waiting calls
+
+---> Basic Queue Terminology
+| Term          | Meaning                          |
+| ------------- | -------------------------------- |
+| **Enqueue**   | Insert an element into the queue |
+| **Dequeue**   | Remove an element from the queue |
+| **Front**     | Position where deletion happens  |
+| **Rear**      | Position where insertion happens |
+| **Overflow**  | Queue is full                    |
+| **Underflow** | Queue is empty                   |
+
+---> How Queue Works (Concept)
+
+FRONT → [ A ][ B ][ C ] ← REAR
+
+* **Enqueue** → Insert at **REAR**
+* **Dequeue** → Remove from **FRONT**
+
+---> FIFO Explained (Very Important for Interviews)
+If elements are added in this order:
+
+Enqueue: 10 → 20 → 30
+
+They will be removed like:
+
+Dequeue: 10 → 20 → 30
+
+➡️ **Same order in, same order out**
+
+---> Queue Operations (With Examples)
+### 1️⃣ Enqueue (Insertion)
+**Definition:**
+Adding a new element at the **rear end** of the queue.
+**Example:**
+
+Queue: [10, 20]
+Enqueue(30)
+Queue becomes: [10, 20, 30]
+
+
+### 2️⃣ Dequeue (Deletion)
+**Definition:**
+Removing an element from the **front end** of the queue.
+**Example:**
+
+Queue: [10, 20, 30]
+Dequeue()
+Removed element: 10
+Queue becomes: [20, 30]
+
+
+### 3️⃣ Peek / Front
+**Definition:**
+Returns the element at the **front** without removing it.
+**Example:**
+
+Queue: [20, 30]
+Peek → 20
+
+
+### 4️⃣ isEmpty()
+Checks if the queue is empty.
+
+Queue: [ ]
+Result → TRUE
+
+
+### 5️⃣ isFull()
+Checks if the queue is full (mainly in array implementation).
+
+---> Types of Queues
+### 1️⃣ Simple Queue (Linear Queue)
+* Insertion at rear
+* Deletion at front
+* Problem: **wasted space** after deletions
+
+### 2️⃣ Circular Queue ⭐ (Very Important)
+* Last position connects back to first
+* Solves space wastage problem
+
+[ ][ ][ ][ ]
+ ↑        ↓
+ └────────┘
+
+
+### 3️⃣ Priority Queue
+* Each element has a **priority**
+* Higher priority element is served first
+**Example:**
+* Hospital emergency patients
+* CPU task scheduling
+
+### 4️⃣ Deque (Double Ended Queue)
+* Insertion & deletion allowed at **both ends**
+Types:
+* Input Restricted Deque
+* Output Restricted Deque
+
+---> Queue Implementation Methods
+### 1️⃣ Array Implementation
+* Uses fixed size array
+* Faster access
+* Can cause overflow
+
+### 2️⃣ Linked List Implementation ⭐
+* Dynamic size
+* No overflow until memory full
+* Extra memory for pointers
+
+---> Time Complexity of Queue Operations
+| Operation | Time |
+|  | - |
+| Enqueue   | O(1) |
+| Dequeue   | O(1) |
+| Peek      | O(1) |
+| Search    | O(n) |
+
+---> Common Interview Questions
+1. Why Queue uses FIFO?
+2. Difference between Stack and Queue
+3. What is Circular Queue?
+4. How to detect overflow and underflow?
+5. Real-life applications of Queue
+6. Queue using Stack
+7. Stack using Queue
+
+---> Queue vs Stack (Quick Comparison)
+| Stack           | Queue                       |
+|  |  |
+| LIFO            | FIFO                        |
+| Push / Pop      | Enqueue / Dequeue           |
+| One end         | Two ends                    |
+| Undo, Recursion | Scheduling, Waiting systems |
+
+---> Where Queue is Used (Very Important)
+* 🖨️ Printer job scheduling
+* 🌐 Web servers
+* 💻 CPU scheduling
+* 📶 Network packet handling
+* 🎮 Game turn systems
+* 🚦 Traffic systems
+
+---> Key Points to Remember
+* Queue follows **FIFO**
+* Enqueue → Rear
+* Dequeue → Front
+* Circular Queue solves space issue
+* Queue is used when **order matters**
+
+---> One-Line Definition (Perfect for Exams)
+> **Queue is a linear data structure that follows FIFO principle where insertion happens at rear and deletion happens at front.**
+
