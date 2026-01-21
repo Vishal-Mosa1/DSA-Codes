@@ -1,0 +1,241 @@
+CIRCULAR QUEUE — COMPLETE NOTES
+
+-->What is a Circular Queue?
+
+A **Circular Queue** is a **linear data structure** where the **last position is connected back to the first position**, forming a **circle**.
+
+👉 Unlike a normal queue, **unused empty spaces are reused**.
+
+> Think of it as a **round table** instead of a straight line.
+
+---
+
+-->Why Circular Queue?
+
+### ❌ Problem with Normal Queue
+
+In a normal queue (array implementation):
+
+* Dequeue removes elements from the **front**
+* Front keeps moving forward
+* Empty spaces at the beginning **cannot be reused**
+* Queue may look **full even when space exists**
+
+This causes **memory wastage**.
+
+---
+
+-->Circular Queue Solves This
+
+Circular queue **wraps around** and reuses free spaces.
+
+👉 When `rear` reaches the last index, it goes back to index `0` **if space is available**.
+
+---
+
+-->Key Terminology
+
+| Term         | Meaning                    |
+| ------------ | -------------------------- |
+| **Front**    | Index of the first element |
+| **Rear**     | Index of the last element  |
+| **Enqueue**  | Insert element             |
+| **Dequeue**  | Remove element             |
+| **Size (N)** | Total capacity of queue    |
+
+---
+
+-->Core Idea (Very Important)
+
+Instead of doing:
+
+```
+rear = rear + 1
+```
+
+Circular Queue does:
+
+```
+rear = (rear + 1) % N
+front = (front + 1) % N
+```
+
+👉 This modulo operation makes the queue **circular**.
+
+---
+
+-->Conditions (MUST REMEMBER)
+
+### ✅ Queue is EMPTY when:
+
+```
+front == -1
+```
+
+### ✅ Queue is FULL when:
+
+```
+(front == (rear + 1) % N)
+```
+
+📌 This condition is **the heart of Circular Queue**.
+
+---
+
+-->Enqueue Operation (Insertion)
+
+### Steps:
+
+1. Check if queue is FULL
+2. If empty → set `front = rear = 0`
+3. Else → move `rear = (rear + 1) % N`
+4. Insert element at `rear`
+
+### Example:
+
+Queue size = 5
+Initial:
+
+```
+front = -1, rear = -1
+```
+
+Insert 10:
+
+```
+front = 0, rear = 0
+[10, _, _, _, _]
+```
+
+Insert 20:
+
+```
+rear = (0 + 1) % 5 = 1
+[10, 20, _, _, _]
+```
+
+---
+
+-->Dequeue Operation (Deletion)
+
+### Steps:
+
+1. Check if queue is EMPTY
+2. Remove element at `front`
+3. If only one element → reset `front = rear = -1`
+4. Else → `front = (front + 1) % N`
+
+### Example:
+
+Queue:
+
+```
+[10, 20, 30, _, _]
+front = 0, rear = 2
+```
+
+Dequeue:
+
+```
+front = (0 + 1) % 5 = 1
+[_, 20, 30, _, _]
+```
+
+---
+
+-->Circular Nature Example (MOST IMPORTANT)
+
+Queue size = 5
+
+### Step 1: Insert elements
+
+```
+[10, 20, 30, 40, 50]
+front = 0, rear = 4
+```
+
+### Step 2: Dequeue two elements
+
+```
+[_, _, 30, 40, 50]
+front = 2, rear = 4
+```
+
+### Step 3: Enqueue new element (60)
+
+```
+rear = (4 + 1) % 5 = 0
+[60, _, 30, 40, 50]
+```
+
+🔥 **This is Circular Queue magic**
+Empty spaces reused instead of wasted.
+
+---
+
+-->Real-Life Analogy
+
+### 🎬 Movie Theatre Line
+
+* People leave from the front
+* New people join
+* If front seats are empty, **why waste them?**
+* Circular queue says:
+  👉 *“Go around and reuse the space!”*
+
+---
+
+-->Advantages
+
+✅ Efficient memory utilization
+✅ No space wastage
+✅ Perfect for fixed-size buffers
+✅ Faster than shifting elements
+
+---
+
+-->Disadvantages
+
+❌ Slightly complex logic
+❌ Full condition can be confusing
+❌ Fixed size (array-based)
+
+---
+
+-->Applications of Circular Queue
+
+* CPU Scheduling (Round Robin)
+* Traffic signal systems 🚦
+* Circular buffers
+* Multiplayer games turn rotation
+* Printer queue
+* Streaming data buffers
+
+---
+
+-->Time Complexity
+
+| Operation | Time |
+| --------- | ---- |
+| Enqueue   | O(1) |
+| Dequeue   | O(1) |
+| Peek      | O(1) |
+
+---
+
+-->Circular Queue vs Normal Queue
+
+| Feature     | Normal Queue  | Circular Queue   |
+| ----------- | ------------- | ---------------- |
+| Space usage | Wastes memory | Efficient        |
+| Reuse space | ❌ No          | ✅ Yes            |
+| Logic       | Simple        | Slightly complex |
+| Performance | Can degrade   | Optimal          |
+
+---
+
+-->One-Line Exam Definition
+
+> **Circular Queue is a queue where the last position is connected to the first, allowing efficient reuse of memory using modulo arithmetic.**
+
+---
