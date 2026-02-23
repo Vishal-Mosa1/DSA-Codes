@@ -1,0 +1,166 @@
+# ✅ Longest Common Subsequence (LCS) — Java Code + Full Dry Run
+
+public class LCSExample {
+
+    public static void main(String[] args) {
+
+        String a = "ABCBDAB";
+        String b = "BDCABA";
+
+        int m = a.length();
+        int n = b.length();
+
+        int[][] dp = new int[m + 1][n + 1];
+
+        // Fill DP table
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+
+                if (a.charAt(i - 1) == b.charAt(j - 1)) {
+                    dp[i][j] = 1 + dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+
+        System.out.println("Length of LCS: " + dp[m][n]);
+
+        // Backtracking to print LCS string
+        int i = m, j = n;
+        StringBuilder lcs = new StringBuilder();
+
+        while (i > 0 && j > 0) {
+
+            if (a.charAt(i - 1) == b.charAt(j - 1)) {
+                lcs.append(a.charAt(i - 1));
+                i--;
+                j--;
+            }
+            else if (dp[i - 1][j] > dp[i][j - 1]) {
+                i--;
+            }
+            else {
+                j--;
+            }
+        }
+
+        System.out.println("LCS String: " + lcs.reverse().toString());
+    }
+}
+```
+
+---
+
+# 🔹 Dry Run (Step-by-Step Explanation)
+
+### Input
+
+```
+A = ABCBDAB
+B = BDCABA
+```
+
+Length:
+
+```
+m = 7
+n = 6
+```
+
+DP Table Size:
+
+```
+(7 + 1) × (6 + 1) = 8 × 7
+```
+
+---
+
+# 🔹 Rule Used in DP
+
+| Condition        | Formula Used                           |
+| ---------------- | -------------------------------------- |
+| Characters match | dp[i][j] = 1 + dp[i-1][j-1]            |
+| No match         | dp[i][j] = max(dp[i-1][j], dp[i][j-1]) |
+
+---
+
+# 🔹 Final DP Table
+
+```
+      ""  B  D  C  A  B  A
+   -------------------------
+"" |  0  0  0  0  0  0  0
+A  |  0  0  0  0  1  1  1
+B  |  0  1  1  1  1  2  2
+C  |  0  1  1  2  2  2  2
+B  |  0  1  1  2  2  3  3
+D  |  0  1  2  2  2  3  3
+A  |  0  1  2  2  3  3  4
+B  |  0  1  2  2  3  4  4
+```
+
+---
+
+# 🔹 How Length is Found
+
+Bottom-right cell:
+
+```
+dp[7][6] = 4
+```
+
+So,
+
+```
+Length of LCS = 4
+```
+
+---
+
+# 🔹 Backtracking (How LCS String is Found)
+
+Start from bottom-right:
+
+1. B vs A → Not match → Move left
+2. B vs B → Match → Add B
+3. Move diagonal
+4. A vs A → Match → Add A
+5. Move diagonal
+6. D vs C → Not match → Move up
+7. B vs C → Not match → Move up
+8. C vs C → Match → Add C
+9. Move diagonal
+10. B vs B → Match → Add B
+
+Collected (reverse order):
+
+```
+B A C B
+```
+
+Reverse it:
+
+```
+BCAB
+```
+
+(Note: BCBA is also correct. Multiple valid answers possible.)
+
+---
+
+# 🔹 Final Output
+
+```
+Length of LCS: 4
+LCS String: BCAB
+```
+
+---
+
+# 🔹 Time & Space Complexity
+
+```
+Time Complexity  = O(m × n)
+Space Complexity = O(m × n)
+```
